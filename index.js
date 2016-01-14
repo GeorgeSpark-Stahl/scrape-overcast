@@ -3,6 +3,8 @@ var agent = superagent.agent()
 var Xray = require('x-ray');
 var x = Xray();
 var moment = require('moment');
+var sparkfun_data = require('./sparkfun_data.json')
+var request = require('request')
 var total_duration = moment.duration();
 var total_episodes = 0;
 
@@ -30,6 +32,18 @@ agent
           duration: total_duration.asMinutes()
         }
         console.log(summary)
+        var qs =
+        {
+          private_key: process.env.SPARKDATA_PK,
+          duration:summary.duration,
+          episodes:summary.episodes
+        }
+        request.get({uri:process.env.SPARKDATA_URL, qs:qs}, function callback(error, response, body) {
+          if(error)
+            console.log(error)
+          if(body)
+            console.log(body)
+        })
       })
     }
   });
