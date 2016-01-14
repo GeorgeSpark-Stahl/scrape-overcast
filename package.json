@@ -1,0 +1,16 @@
+{
+  "name": "overcast_scrape",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.11.1",
+    "superagent": "^1.6.1",
+    "x-ray": "^2.0.3"
+  }
+}
