@@ -3,7 +3,6 @@ var agent = superagent.agent()
 var Xray = require('x-ray');
 var x = Xray();
 var moment = require('moment');
-var sparkfun_data = require('./sparkfun_data.json')
 var request = require('request')
 var total_duration = moment.duration();
 var total_episodes = 0;
