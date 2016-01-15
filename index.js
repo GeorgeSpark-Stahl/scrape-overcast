@@ -16,15 +16,28 @@ agent
       console.log(err);
     } else {
       x(res.text, ['.titlestack@html'])(function(err, elements) {
-        elements.forEach(function(element){
-          x(element, ['.singleline'])(function (err, title) {
-            if (typeof title[0] != 'undefined') {
-              var duration=moment.duration(title[2].trim().split('•')[1])
-              total_duration.add(duration)
-              total_episodes++;
-            }
+        if(err)
+          console.log(err)
+        else {
+          elements.forEach(function(element){
+            x(element, ['.singleline'])(function (err, title) {
+              try {
+                if (typeof title[0] != 'undefined') {
+                  var duration_str = title[2].trim().split('•')[1]
+                  if(duration_str !== undefined)
+                    duration_str = duration_str.trim().split(' ')[0]
+                  var duration=moment.duration(duration_str)
+                  total_duration.add(duration)
+                  total_episodes++;
+                }
+              }
+              catch(e) {
+                console.log(e)
+              }
+
+            })
           })
-        })
+        }
         var summary =
         {
           episodes: total_episodes,
